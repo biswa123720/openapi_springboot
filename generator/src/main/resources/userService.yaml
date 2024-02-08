@@ -1,0 +1,157 @@
+openapi: 3.0.3
+info:
+  title: User Service API Spec
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api/v1/users
+paths:
+  /create:
+    post:
+      tags:
+        - User
+      summary: Add a new User
+      description: Add a new User
+      operationId: createUser
+      requestBody:
+        description: Create a new User
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDto'
+        required: true
+      responses:
+        '200':
+          description: User Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '400':
+          description: Invalid Request
+        '404':
+          description: User not found
+  /get/{id}:
+    get:
+      tags:
+        - User
+      summary: get user by id
+      description: get user by id
+      operationId: getUserById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successfully fetched user details by id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '400':
+          description: Invalid Request
+        '404':
+          description: User not found
+
+  /get:
+    get:
+      tags:
+        - User
+      summary: get user details
+      description: get user details
+      operationId: getUser
+      responses:
+        '200':
+          description: Successfully fetched user details
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserDto'
+        '400':
+          description: Invalid Request
+        '404':
+          description: User not found
+
+  /update/{id}:
+    put:
+      tags:
+        - User
+      summary: update user by id
+      description: update user by id
+      operationId: updateUser
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Create a new User
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDto'
+        required: true
+      responses:
+        '200':
+          description: Successfully update user details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        '400':
+          description: Invalid Request
+        '404':
+          description: User not found
+
+  /delete/{id}:
+    delete:
+      tags:
+        - User
+      summary: delete user by id
+      description: delete user by id
+      operationId: deleteUser
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successfully deleted
+        '400':
+          description: Invalid Request
+        '404':
+          description: User not found
+
+components:
+  schemas:
+    UserDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        firstName:
+          type: string
+          example: biswa
+        lastName:
+          type: string
+          example: biswal
+        emailAddress:
+          type: string
+          example: biswabiswal41@gmail.com
+#        UserRole:
+#          type: string
+#          enum:
+#            - Developer
+#            - DB Administrator
+#            - Data Engineer
+#            - Data scientist
+#            - Cloud Engineer
