@@ -1,0 +1,7 @@
+com/webclient/address/Controller/AddressController.class
+com/webclient/address/Configuration/addressConfig.class
+com/webclient/address/Entity/Address.class
+com/webclient/address/Repository/AddressRepository.class
+com/webclient/address/Model/AddressResponse.class
+com/webclient/address/AddressApplication.class
+com/webclient/address/Service/AddressService.class
